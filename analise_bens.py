@@ -7,8 +7,9 @@ import seaborn as sns
 df = pd.read_csv('bens_candidatos_soma.csv', delimiter=';')
 
 # Configuração da página
-st.title("Análise de Marketing Político")
-st.write("Aqui está a análise dos bens dos candidatos à eleição.")
+st.title("Bens dos Candidatos a Vereador em Boituva - SP")
+st.write("Eleições Municipais 2024")
+st.write("Por Paulo Baldacim e João Baldacim")
 
 # Gráfico dos 20 candidatos mais ricos
 st.header("Top 20 Candidatos Mais Ricos")
