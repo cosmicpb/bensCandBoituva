@@ -64,7 +64,7 @@ st.pyplot(fig)
 
 # Soma das rendas dos candidatos por partido
 st.header("Soma das Rendas por Partido")
-soma_rendas_por_partido = df.groupby('SG_PARTIDO')['Total de Bens'].sum().reset_index()
+soma_rendas_por_partido = df.groupby('SG_PARTIDO')['Total de Bens'].sum().reset_index().sort_values(by='Total de Bens', ascending=False)
 fig, ax = plt.subplots(figsize=(12, 8))
 sns.barplot(x='SG_PARTIDO', y='Total de Bens', data=soma_rendas_por_partido, palette='viridis', ax=ax)
 ax.set_xlabel('Partido')
