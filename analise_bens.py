@@ -12,7 +12,7 @@ df['Candidato_Partido'] = df['NM_URNA_CANDIDATO'] + ' - ' + df['SG_PARTIDO']
 # Configuração da página
 st.title("Bens dos Candidatos a Vereador em Boituva - SP")
 st.write("Eleições Municipais 2024")
-st.write("Por Paulo Baldacim e João Baldacim")
+st.write("Por Paulo Baldacim")
 
 # Gráfico dos 20 candidatos mais ricos
 st.header("Top 20 Candidatos")
@@ -59,5 +59,16 @@ sns.boxplot(x='DS_OCUPACAO', y='Total de Bens', data=df, ax=ax)
 ax.set_xlabel('Ocupação')
 ax.set_ylabel('Total de Bens (R$)')
 ax.set_title('Distribuição de Renda por Ocupação')
+plt.xticks(rotation=90)
+st.pyplot(fig)
+
+# Soma das rendas dos candidatos por partido
+st.header("Soma das Rendas por Partido")
+soma_rendas_por_partido = df.groupby('SG_PARTIDO')['Total de Bens'].sum().reset_index()
+fig, ax = plt.subplots(figsize=(12, 8))
+sns.barplot(x='SG_PARTIDO', y='Total de Bens', data=soma_rendas_por_partido, palette='viridis', ax=ax)
+ax.set_xlabel('Partido')
+ax.set_ylabel('Total de Bens (R$)')
+ax.set_title('Soma das Rendas dos Candidatos por Partido')
 plt.xticks(rotation=90)
 st.pyplot(fig)
