@@ -6,16 +6,19 @@ import seaborn as sns
 # Carregar os dados
 df = pd.read_csv('bens_candidatos_soma.csv', delimiter=';')
 
+# Criar a coluna combinada para o eixo Y
+df['Candidato_Partido'] = df['NM_URNA_CANDIDATO'] + ' - ' + df['SG_PARTIDO']
+
 # Configuração da página
 st.title("Bens dos Candidatos a Vereador em Boituva - SP")
 st.write("Eleições Municipais 2024")
 st.write("Por Paulo Baldacim e João Baldacim")
 
 # Gráfico dos 20 candidatos mais ricos
-st.header("Top 20 Candidatos Mais Ricos")
+st.header("Top 20 Candidatos")
 top_20_candidatos = df.nlargest(20, 'Total de Bens')
 fig, ax = plt.subplots(figsize=(10, 8))
-sns.barplot(x='Total de Bens', y='NM_CANDIDATO', data=top_20_candidatos, palette='viridis', ax=ax)
+sns.barplot(x='Total de Bens', y='Candidato_Partido', data=top_20_candidatos, palette='viridis', ax=ax)
 ax.set_xlabel('Total de Bens (R$)')
 ax.set_ylabel('Nome do Candidato')
 ax.set_title('Top 20 Candidatos Mais Ricos')
